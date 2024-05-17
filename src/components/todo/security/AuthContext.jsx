@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
 export const AuthContext = createContext()
 
@@ -6,13 +7,23 @@ export const useAuth = () => useContext(AuthContext)
 
 export default function AuthProvider({ children }) {
 
-  const [number, setnumber] = useState(0);
-
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  setInterval(() => setnumber(number + 1), 10000);
+  function login(username, password) {
+    if (username === 'bryanvillafuerte' && password === 'dummy') {
+      setIsAuthenticated(true);
+      return true;
+    } else {
+      setIsAuthenticated(false);
+      return false;
+    }
+  }
 
-  const valueToBeShared = { number, isAuthenticated, setIsAuthenticated };
+  function logout() {
+    setIsAuthenticated(false);
+  }
+
+  const valueToBeShared = { isAuthenticated, login, logout };
 
   return (
     <AuthContext.Provider value={ valueToBeShared }>
@@ -20,4 +31,8 @@ export default function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 
+}
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired
 }
