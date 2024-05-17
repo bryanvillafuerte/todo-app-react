@@ -1,4 +1,4 @@
-import './App.css'
+import './scss/styles.scss'
 import { TodoApp } from './components/todo/TodoApp.jsx';
 
 function App() {
