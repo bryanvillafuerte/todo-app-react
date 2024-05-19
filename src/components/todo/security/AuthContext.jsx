@@ -8,13 +8,16 @@ export const useAuth = () => useContext(AuthContext)
 export default function AuthProvider({ children }) {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [username, setUsername] = useState();
 
   function login(username, password) {
     if (username === 'bryanvillafuerte' && password === 'dummy') {
       setIsAuthenticated(true);
+      setUsername(username);
       return true;
     } else {
       setIsAuthenticated(false);
+      setUsername(null);
       return false;
     }
   }
@@ -23,7 +26,7 @@ export default function AuthProvider({ children }) {
     setIsAuthenticated(false);
   }
 
-  const valueToBeShared = { isAuthenticated, login, logout };
+  const valueToBeShared = { isAuthenticated, login, logout, username };
 
   return (
     <AuthContext.Provider value={ valueToBeShared }>
