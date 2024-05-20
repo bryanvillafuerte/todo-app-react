@@ -30,13 +30,13 @@ function LoginComponent() {
   return (
     <div className="Login container">
       <h1>Please login</h1>
-      {showErrorMessage && <div className="errorMessage">Authentication failed. Please check your credentials.</div>}
+      {showErrorMessage && <div className="errorMessage text-danger mb-3">Authentication failed. Please check your credentials.</div>}
       <div className="LoginForm">
-        <div>
+        <div className="mb-3">
           <label>Username:</label>
           <input type="text" name="username" value={username} onChange={handleUsernameChange} />
         </div>
-        <div>
+        <div className="mb-3">
           <label>Password:</label>
           <input type="password" name="password" value={password} onChange={handlePasswordChange} />
         </div>
