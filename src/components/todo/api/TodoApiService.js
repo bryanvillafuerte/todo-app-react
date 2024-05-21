@@ -1,17 +1,4 @@
-import axios from 'axios';
-
-const username = 'username';
-const password = 'password';
-const token = btoa(`${username}:${password}`);
-
-const apiClient = axios.create(
-  {
-    baseURL: 'http://localhost:8080',
-    headers: {
-      'Authorization': `Basic ${token}`
-    }
-  }
-)
+import { apiClient } from './ApiClient.js';
 
 export const retrieveAllTodosForUsernameApi = (user) => apiClient.get(`/users/${user}/todos`);
 

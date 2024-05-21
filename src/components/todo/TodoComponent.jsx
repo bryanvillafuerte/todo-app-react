@@ -18,7 +18,7 @@ function TodoComponent() {
   }, [id]);
 
   function retrieveTodos() {
-    if(id !== -1) {
+    if(id != -1) {
       retrieveTodoApi(username, id)
         .then(response => {
           setDescription(response.data.description);
@@ -29,7 +29,6 @@ function TodoComponent() {
   }
 
   function onsubmit(values) {
-    console.log(values)
     const todo = {
       id: id,
       username: username,
@@ -38,11 +37,10 @@ function TodoComponent() {
       done: false
     }
 
-    if(id === -1) {
+    if(id == -1) {
       createTodoApi(username, todo)
         .then(() => navigate('/todos'))
         .catch(error => console.log(error));
-      return;
     } else {
       updateTodoApi(username, id, todo)
         .then(() => navigate('/todos'))
